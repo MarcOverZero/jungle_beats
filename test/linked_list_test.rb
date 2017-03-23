@@ -71,14 +71,80 @@ class LinkedListTest < Minitest::Test
   #   assert_equal "bop", list.head.next_node.next_node.data
   # end
 
-  def test_for_three_node_string
+  def test_it_can_string_three_nodes
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    list.append("bip")
+
+    assert_equal "doop deep bip", list.to_string
+  end
+
+  def test_it_can_count_three_nodes
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
     list.append("bop")
 
-    assert_equal "doop deep bop", list.to_string
-
+    assert_equal 3, list.count
   end
 
+  def test_it_can_prepend
+    list = LinkedList.new
+    list.prepend("doop")
+    list.prepend("deep")
+    list.prepend("bop")
+
+    assert_equal "bop", list.head.data
+    assert_equal "deep", list.head.next_node.data
+    assert_equal "doop", list.head.next_node.next_node.data
+  end
+
+  def test_it_can_insert
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    list.append("bop")
+    list.append("shoo")
+    list.append("bow")
+    list.insert(3,"insert")
+
+    assert "insert", list.head.next_node.next_node.next_node.next_node.data
+  end
+
+  def test_it_knows_what_is_included
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    list.append("bop")
+    list.append("shoo")
+    list.append("bow")
+
+    assert_equal true, list.includes?("bop")
+    assert_equal false, list.includes?("marc")
+  end
+
+
+  def test_it_can_find
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    list.append("bop")
+    list.append("shoo")
+    list.append("bow")
+
+    assert_equal "deep bop shoo", list.find(2,3)
+  end
+
+  def test_it_can_pop
+    list = LinkedList.new
+    list.append("doop")
+    list.append("deep")
+    list.append("bop")
+    list.append("shoo")
+    list.append("bow")
+
+    assert_equal "bow", list.pop
+    assert_equal "doop deep bop shoo", list.to_string
+  end
 end
