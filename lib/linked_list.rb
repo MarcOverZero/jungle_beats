@@ -1,10 +1,10 @@
 require './lib/node'
 class LinkedList
   attr_reader :head, :list, :count
-  def initialize
-    @head = nil
+  def initialize(head = nil)
+    @head = head
     @count = 0
-    @string = ""
+    #^^ move dynamic counter to append method?
   end
 
   def append(new_data)
@@ -18,15 +18,17 @@ class LinkedList
       marker.next_node = Node.new(new_data)
     end
     @count += 1
-    @string << new_data + " "
-    #^ cheater line travesrse with nodes to concat data in the moment
     head.data
   end
 
   def to_string
-    @string.strip
+    marker = self.head
+    string = self.head.data
+    until marker.next_node.nil?
+      marker = marker.next_node
+      string << " " + marker.data
+    end
+    p string
   end
-
-
 
 end

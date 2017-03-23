@@ -22,7 +22,6 @@ class LinkedListTest < Minitest::Test
     list.append("doop")
 
     assert_instance_of Node, list.head
-
   end
 
   def test_it_can_hold_the_nodes
@@ -45,13 +44,6 @@ class LinkedListTest < Minitest::Test
 
     assert_equal 1, list.count
   end
-### vv fix test
-  def test_it_can_output_data_from_all_nodes
-    list = LinkedList.new
-    list.append("doop")
-
-    assert_equal "doop", list.to_string
-  end
 
   def test_it_can_handle_two_nodes
     list = LinkedList.new
@@ -70,15 +62,23 @@ class LinkedListTest < Minitest::Test
     assert_equal "doop deep", list.to_string
   end
 
-  def test_for_davids_three_nodes
+  # def test_for_davids_three_nodes
+  #   list = LinkedList.new
+  #   list.append("doop")
+  #   list.append("deep")
+  #   list.append("bop")
+  #
+  #   assert_equal "bop", list.head.next_node.next_node.data
+  # end
+
+  def test_for_three_node_string
     list = LinkedList.new
     list.append("doop")
     list.append("deep")
     list.append("bop")
 
-    assert_equal "bop", list.head.next_node.next_node.data
+    assert_equal "doop deep bop", list.to_string
+
   end
-
-
 
 end
