@@ -8,22 +8,24 @@ class LinkedList
   end
 
   def append(new_data)
-    marker = @head
-    until marker.next_node.nil?
-      marker = marker.next_node
+    if @head == nil
+      @head = Node.new(new_data)
+    else
+      marker = @head
+      until marker.next_node.nil?
+        marker = marker.next_node
+      end
+      marker.next_node = Node.new(new_data)
     end
-    marker.next_node = Node.new(new_data)
     @count += 1
     @string << new_data + " "
-    # ^ cheater line traverse with nodes to concat data in the moment
-    head.next_node.data
+    #^ cheater line travesrse with nodes to concat data in the moment
+    head.data
   end
 
   def to_string
     @string.strip
   end
-
-
 
 
 
